@@ -1,22 +1,30 @@
 const admin = require("firebase-admin");
 const { Vonage } = require("@vonage/server-sdk");
 
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("../serviceAccountKey.json");
+
+function requireEnv(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+}
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://iot-deneme-yeni-default-rtdb.firebaseio.com",
+  databaseURL: requireEnv("FIREBASE_DATABASE_URL"),
 });
 
 const vonage = new Vonage({
-  apiKey: "----------",
-  apiSecret: "----------",
+  apiKey: requireEnv("VONAGE_API_KEY"),
+  apiSecret: requireEnv("VONAGE_API_SECRET"),
 });
 
 const db = admin.database();
 const otoparkRef = db.ref("Otopark");
 
-const phoneNumber = "-------------";
+const phoneNumber = requireEnv("PHONE_NUMBER");
 
 otoparkRef.on("value", (snapshot) => {
   const otoparkData = snapshot.val();

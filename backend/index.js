@@ -12,10 +12,21 @@ function requireEnv(name) {
 }
 
 const serviceAccountPath = requireEnv("SERVICE_ACCOUNT_KEY_PATH");
-if (!path.isAbsolute(serviceAccountPath)) {
-  throw new Error("SERVICE_ACCOUNT_KEY_PATH must be an absolute path");
+const projectRoot = path.resolve(__dirname, "..");
+const resolvedServiceAccountPath = path.isAbsolute(serviceAccountPath)
+  ? serviceAccountPath
+  : path.resolve(projectRoot, serviceAccountPath);
+
+if (
+  !path.isAbsolute(serviceAccountPath) &&
+  !resolvedServiceAccountPath.startsWith(`${projectRoot}${path.sep}`)
+) {
+  throw new Error("SERVICE_ACCOUNT_KEY_PATH must resolve under project root");
 }
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
+
+const serviceAccount = JSON.parse(
+  fs.readFileSync(resolvedServiceAccountPath, "utf8")
+);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

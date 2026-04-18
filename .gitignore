@@ -6,6 +6,7 @@ npm-debug.log*
 
 # Ortam değişkenleri dosyası
 .env
+backend/.env
 
 # VSCode ayarları
 .vscode/
@@ -16,6 +17,7 @@ Thumbs.db
 
 # fİrebase.json dosyası
 serviceAccountKey.json
+backend/serviceAccountKey.json
 
 # env dosyası
 package-lock.json

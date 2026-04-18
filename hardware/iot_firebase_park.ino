@@ -1,12 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
-
-// WiFi bilgileri
-const char *ssid = "***********"; 
-const char *password = "***********";  
-
-#define FIREBASE_HOST "******************.firebaseio.com" 
-#define FIREBASE_AUTH "*********************************"    
+#include "config.h"
 
 // Flash tuşu (ESP8266'daki D3 pinine bağlı)
 #define FLASH_BUTTON_PIN 0
@@ -19,7 +13,7 @@ void setup() {
   delay(1000);
 
   Serial.println("WiFi ağına bağlanılıyor...");
-  WiFi.begin(ssid, password);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   
   while (WiFi.status() != WL_CONNECTED) {

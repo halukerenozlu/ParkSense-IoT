@@ -36,16 +36,22 @@ Before setting up the project, ensure you have the following:
 
    - Place your `serviceAccountKey.json` file in the root directory of the project.
 
-4. Configure Vonage API credentials:
-   - Update the `apiKey` and `apiSecret` in `index.js` with your Vonage credentials.
-   - Replace the `phoneNumber` variable with the recipient's phone number.
+4. Configure backend environment variables:
+   - Set `SERVICE_ACCOUNT_KEY_PATH` (path to key file under project root, e.g. `serviceAccountKey.json`)
+   - Set `FIREBASE_DATABASE_URL`
+   - Set `VONAGE_API_KEY`
+   - Set `VONAGE_API_SECRET`
+   - Set `PHONE_NUMBER`
+
+5. Configure hardware values:
+   - Update `hardware/config.h` with your WiFi and Firebase values.
 
 ## Usage
 
 1. Start the application:
 
    ```bash
-   node index.js
+   node backend/index.js
    ```
 
 2. The application will listen for changes in the Firebase Realtime Database and send SMS notifications when the parking lot status changes.
@@ -54,7 +60,11 @@ Before setting up the project, ensure you have the following:
 
 ```
 iot_firebase_park_project/
-├── index.js                # Main application logic
+├── backend/
+│   └── index.js            # Main backend application logic
+├── hardware/
+│   ├── config.h            # WiFi and Firebase device configuration
+│   └── iot_firebase_park.ino
 ├── package.json            # Project metadata and dependencies
 ├── package-lock.json       # Dependency lock file
 ├── serviceAccountKey.json  # Firebase service account key (not included in the repository)
@@ -70,7 +80,7 @@ iot_firebase_park_project/
 ## Notes
 
 - Ensure that your `serviceAccountKey.json` file is not shared publicly or committed to version control.
-- Update the Firebase database URL in `index.js` to match your Firebase project.
+- Keep backend credentials in environment variables instead of hardcoding them in source files.
 
 ## License
 

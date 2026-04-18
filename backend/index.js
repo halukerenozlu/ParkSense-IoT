@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 const { Vonage } = require("@vonage/server-sdk");
-
-const serviceAccount = require("../serviceAccountKey.json");
+const path = require("path");
 
 function requireEnv(name) {
   const value = process.env[name];
@@ -10,6 +9,10 @@ function requireEnv(name) {
   }
   return value;
 }
+
+const serviceAccountPath =
+  process.env.SERVICE_ACCOUNT_KEY_PATH || "../serviceAccountKey.json";
+const serviceAccount = require(path.resolve(__dirname, serviceAccountPath));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

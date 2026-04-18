@@ -37,6 +37,7 @@ Before setting up the project, ensure you have the following:
    - Place your `serviceAccountKey.json` file in the root directory of the project.
 
 4. Configure backend environment variables:
+   - Set `SERVICE_ACCOUNT_KEY_PATH` (optional, defaults to `../serviceAccountKey.json` from `backend/`)
    - Set `FIREBASE_DATABASE_URL`
    - Set `VONAGE_API_KEY`
    - Set `VONAGE_API_SECRET`

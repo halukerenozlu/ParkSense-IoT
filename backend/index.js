@@ -1,5 +1,6 @@
 const admin = require("firebase-admin");
 const { Vonage } = require("@vonage/server-sdk");
+const fs = require("fs");
 const path = require("path");
 
 function requireEnv(name) {
@@ -11,7 +12,10 @@ function requireEnv(name) {
 }
 
 const serviceAccountPath = requireEnv("SERVICE_ACCOUNT_KEY_PATH");
-const serviceAccount = require(path.resolve(__dirname, serviceAccountPath));
+if (!path.isAbsolute(serviceAccountPath)) {
+  throw new Error("SERVICE_ACCOUNT_KEY_PATH must be an absolute path");
+}
+const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

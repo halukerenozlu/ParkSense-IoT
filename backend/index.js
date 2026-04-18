@@ -10,8 +10,7 @@ function requireEnv(name) {
   return value;
 }
 
-const serviceAccountPath =
-  process.env.SERVICE_ACCOUNT_KEY_PATH || "../serviceAccountKey.json";
+const serviceAccountPath = requireEnv("SERVICE_ACCOUNT_KEY_PATH");
 const serviceAccount = require(path.resolve(__dirname, serviceAccountPath));
 
 admin.initializeApp({

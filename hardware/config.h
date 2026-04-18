@@ -4,7 +4,7 @@
 #define WIFI_SSID "YOUR_WIFI_SSID"
 #define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
 
-#define FIREBASE_HOST "YOUR_FIREBASE_HOST"
+#define FIREBASE_HOST "your-project-id.firebaseio.com"
 #define FIREBASE_AUTH "YOUR_FIREBASE_AUTH"
 
 #endif

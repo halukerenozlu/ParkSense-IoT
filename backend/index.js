@@ -13,14 +13,9 @@ function requireEnv(name) {
 
 const serviceAccountPath = requireEnv("SERVICE_ACCOUNT_KEY_PATH");
 const projectRoot = path.resolve(__dirname, "..");
-const resolvedServiceAccountPath = path.isAbsolute(serviceAccountPath)
-  ? serviceAccountPath
-  : path.resolve(projectRoot, serviceAccountPath);
+const resolvedServiceAccountPath = path.resolve(projectRoot, serviceAccountPath);
 
-if (
-  !path.isAbsolute(serviceAccountPath) &&
-  !resolvedServiceAccountPath.startsWith(`${projectRoot}${path.sep}`)
-) {
+if (!resolvedServiceAccountPath.startsWith(`${projectRoot}${path.sep}`)) {
   throw new Error("SERVICE_ACCOUNT_KEY_PATH must resolve under project root");
 }
 

@@ -33,7 +33,6 @@ Before setting up the project, ensure you have the following:
    ```
 
 3. Add your Firebase service account key:
-
    - Place your `serviceAccountKey.json` file in the root directory of the project.
 
 4. Configure backend environment variables:
@@ -69,7 +68,9 @@ iot_firebase_park_project/
 ├── package-lock.json       # Dependency lock file
 ├── serviceAccountKey.json  # Firebase service account key (not included in the repository)
 ├── .gitignore              # Files to ignore in version control
-└── README.md               # Project documentation
+├── README.md               # Project documentation
+└── LICENSE                 # License
+
 ```
 
 ## Dependencies
@@ -84,4 +85,4 @@ iot_firebase_park_project/
 
 ## License
 
-This project is licensed under the ISC License.
+This project is licensed under the MIT License.
